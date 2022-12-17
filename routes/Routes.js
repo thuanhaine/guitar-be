@@ -8,7 +8,7 @@ const ModelGuitar = require('../models/modelGuitar');
 const ModelUser = require('../models/modelUser');
 
 //Post Method Add Product
-router.post('/post', async (req, res) => {
+router.post('/addproduct', async (req, res) => {
     const data = new ModelGuitar({
         name: req.body.name,
         quantity: req.body.quantity || 0,
