@@ -8,6 +8,9 @@ const dataSchema = new mongoose.Schema({
   quantity: {
     type: Number,
   },
+  role: {
+    type: Number,
+  },
   price: {
     type: String,
     required: true,
