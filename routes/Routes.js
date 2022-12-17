@@ -7,15 +7,16 @@ const router = express.Router()
 const ModelGuitar = require('../models/modelGuitar');
 const ModelUser = require('../models/modelUser');
 
-//Post Method
+//Post Method Add Product
 router.post('/post', async (req, res) => {
     const data = new ModelGuitar({
-        code: req.body.code,
         name: req.body.name,
-        lecture: req.body.lecture,
-        dateStart: req.body.dateStart,
-        maxStudent: req.body.maxStudent,
-        currentStudent: [],
+        quantity: req.body.quantity || 0,
+        price: req.body.price || 0,
+        type: req.body.type || "Đang cập nhật !",
+        color: [req.body.type] || [],
+        urlImg: req.body.color || '',
+
     })
 
     try {
@@ -123,9 +124,11 @@ router.post('/signup', async (req, res) => {
         name: req.body.name,
         password: passwordHash,
         email: req.body.email,
+        address: req.body.address || '',
         role: "Customer",
+        urlImg: req.body.url,
         dateCreate: `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-        numberCourse: []
+        Cart: []
 
     })  
     console.log(data2)
@@ -199,7 +202,7 @@ router.get('/getUser', async (req, res) => {
         res.json(data)
     }
     catch(error){
-        res.status(500).json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 })
 module.exports = router;
