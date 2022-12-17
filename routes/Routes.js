@@ -22,14 +22,14 @@ router.post('/addproduct', async (req, res) => {
     try {
         const dataToSave = await data.save();
         
-        res.json({status: 200 , message: "Success!"});
+        res.json({status: 200 , message: "Sản Phẩm Đã Được Thêm !"});
     }
     catch (error) {
         res.status(400).json({message: error.message})
     }
 })
 //Get all Guitar
-router.get('/get', async (req, res) => {
+router.get('/getallproduct', async (req, res) => {
     try{
         const data = await ModelGuitar.find();
         res.json(data)
@@ -40,7 +40,7 @@ router.get('/get', async (req, res) => {
 })
 
 //Get by ID one guitar
-router.get('/getOne/:id', async (req, res) => {
+router.get('/getoneproduct/:id', async (req, res) => {
     try{
         const data = await ModelGuitar.findById(req.params.id);
         res.json(data)
@@ -51,7 +51,7 @@ router.get('/getOne/:id', async (req, res) => {
 })
 
 //Update by ID update guitar
-router.patch('/update/:id', async (req, res) => {
+router.patch('/updateproduct/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -69,7 +69,7 @@ router.patch('/update/:id', async (req, res) => {
 })
 
 //Update by ID update User
-router.patch('/updateUser/:id', async (req, res) => {
+router.patch('/updatesser/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -86,7 +86,7 @@ router.patch('/updateUser/:id', async (req, res) => {
     }
 })
 //Delete by ID delete user
-router.delete('/deleteCourse/:id', async (req, res) => {
+router.delete('/deleteproduct/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await ModelGuitar.findByIdAndDelete(id)
@@ -99,7 +99,7 @@ router.delete('/deleteCourse/:id', async (req, res) => {
 })
 
 //Delete by ID delete user
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/deleteuser/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await ModelUser.findByIdAndDelete(id)
@@ -186,7 +186,7 @@ router.post('/login', async (req, res) => {
 })
 
 
-router.post('/getOneUser', async (req, res) => {
+router.post('/getoneuser', async (req, res) => {
     try{
         const data = await ModelUser.findById(req.body);
         res.json(data)
