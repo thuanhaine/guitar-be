@@ -86,7 +86,7 @@ router.patch('/updatesser/:id', async (req, res) => {
         res.json({status: 400, message: error.message })
     }
 })
-//Delete by ID delete user
+//Delete by ID delete product
 router.delete('/deleteproduct/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -186,10 +186,10 @@ router.post('/login', async (req, res) => {
     }
 })
 
-
-router.post('/getoneuser', async (req, res) => {
+// get one User by ID
+router.get('/getoneuser/:id', async (req, res) => {
     try{
-        const data = await ModelUser.findById(req.body);
+        const data = await ModelUser.findById(req.params.id);
         res.json(data)
     }
     catch(error){
@@ -197,6 +197,8 @@ router.post('/getoneuser', async (req, res) => {
     }
 })
 
+
+//get add userS
 router.get('/getUser', async (req, res) => {
     try{
         const data = await ModelUser.find();
