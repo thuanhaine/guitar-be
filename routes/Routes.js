@@ -78,7 +78,6 @@ router.put('/updateUser/:id', async (req, res) => {
         const result = await ModelUser.findByIdAndUpdate(
             id, updatedData, options
         )
-
         res.send({status: 200, message: "Update successfully"})
     }
     catch (error) {
@@ -188,7 +187,8 @@ router.post('/login', async (req, res) => {
 // get one User by ID
 router.get('/getoneuser/:id', async (req, res) => {
     try{
-        const data = await ModelUser.findById(req.params.id);
+        const user = req.params.id
+        const data = await ModelUser.findById({_id: user}, {password: 0});
         res.json(data)
     }
     catch(error){
@@ -197,10 +197,10 @@ router.get('/getoneuser/:id', async (req, res) => {
 })
 
 
-//get add userS
+//get all userS
 router.get('/getUser', async (req, res) => {
     try{
-        const data = await ModelUser.find();
+        const data = await ModelUser.find({}, {password: 0}).exec();
         res.json(data)
     }
     catch(error){
