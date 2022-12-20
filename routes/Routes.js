@@ -16,7 +16,7 @@ router.post('/addproduct', async (req, res) => {
         sale: 0,
         type: req.body.type || "Đang cập nhật !",
         color: [req.body.type] || [],
-        urlImg: req.body.urlImg,
+        urlImg: '',
 
     })
 
@@ -52,12 +52,11 @@ router.get('/getoneproduct/:id', async (req, res) => {
 })
 
 //Update by ID update guitar
-router.patch('/updateproduct/:id', async (req, res) => {
+router.put('/updateProduct/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
         const options = { new: true };
-
         const result = await ModelGuitar.findByIdAndUpdate(
             id, updatedData, options
         )
@@ -70,7 +69,7 @@ router.patch('/updateproduct/:id', async (req, res) => {
 })
 
 //Update by ID update User
-router.patch('/updatesser/:id', async (req, res) => {
+router.put('/updateUser/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -127,7 +126,7 @@ router.post('/signup', async (req, res) => {
         email: req.body.email,
         address: req.body.address || '',
         role: "Customer",
-        urlImg: req.body.url,
+        urlImg: req.body.url || '',
         dateCreate: `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
         Cart: []
 
