@@ -26,7 +26,7 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     Cart: {
-        type: [Object]
+        type: [[Object, Number]]
     },
 
 

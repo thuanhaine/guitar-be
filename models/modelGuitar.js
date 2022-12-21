@@ -5,8 +5,8 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  quantity: {
-    type: Number,
+  stored: {
+    type: Number
   },
   sale: {
     type: Number,
