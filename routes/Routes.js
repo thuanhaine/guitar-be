@@ -173,19 +173,28 @@ router.post('/login', async (req, res) => {
 
     console.log(data);
 
+    if(data){
 
-    const match = await bcrypt.compare(req.body.password , data.password)
-    if (data && match){
-        try {
+        const match = await bcrypt.compare(req.body.password , data.password)
 
-            res.send(JSON.stringify({"status": 200, id: data._id ,  "error": null, "response": "SuccessLogin"}));
+        if (match){
+            try {
+    
+                res.send(JSON.stringify({"status": 200, id: data._id ,  "error": null, "response": "SuccessLogin"}));
+            }
+            catch (error) {
+                res.status(400).json({message: error.message})
+            }
         }
-        catch (error) {
-            res.status(400).json({message: error.message})
+        else {
+            res.send(JSON.stringify({"status": 400, "error": null, "response": "tai hoac mat khau sai"}));
         }
-    }else {
+       
+    }
+    else {
         res.send(JSON.stringify({"status": 400, "error": null, "response": "tai hoac mat khau sai"}));
     }
+    
 })
 
 // get one User by ID
