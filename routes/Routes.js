@@ -169,7 +169,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     console.log(req.body);
-    const data = await ModelUser.findOne({name: req.body.name});
+    const data = await ModelUser.findOne({name: req.body.name });
 
     console.log(data)
     if (data && bcrypt.compare(req.body.password , data.password)){
