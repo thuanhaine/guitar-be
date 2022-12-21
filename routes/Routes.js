@@ -16,7 +16,7 @@ router.post('/addProduct', async (req, res) => {
         sale: 0,
         type: req.body.type || "Đang cập nhật !",
         color: [req.body.type] || [],
-        urlImg: '',
+        urlImg: req.body.urlImg,
 
     })
 
