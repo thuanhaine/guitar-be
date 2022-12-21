@@ -169,18 +169,22 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     console.log(req.body);
-    const data = await ModelUser.findOne({name: req.body.name });
+    const data = await ModelUser.findOne({name: req.body.name});
 
-    console.log(data)
-    if (data && bcrypt.compare(req.body.password , data.password)){
+    console.log(data);
+
+
+    const match = await bcrypt.compare(req.body.password , data.password)
+    if (data && match){
         try {
+
             res.send(JSON.stringify({"status": 200, id: data._id ,  "error": null, "response": "SuccessLogin"}));
         }
         catch (error) {
             res.status(400).json({message: error.message})
         }
     }else {
-        res.send(JSON.stringify({"status": 401, "error": null, "response": "tai hoac mat khau sai"}));
+        res.send(JSON.stringify({"status": 400, "error": null, "response": "tai hoac mat khau sai"}));
     }
 })
 
