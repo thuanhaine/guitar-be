@@ -12,7 +12,7 @@ const dataSchema = new mongoose.Schema({
     type: Number,
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
   },
   type: {
