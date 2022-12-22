@@ -5,7 +5,7 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  stored: {
+  quantity: {
     type: Number
   },
   sale: {
